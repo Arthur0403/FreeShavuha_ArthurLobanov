@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emailBlock.textContent = order.email;
             descriptionBlock.textContent = order.description;
             deadlineBlock.textContent = order.deadline;
-            currencyBlock.textContent = order.currency;
+            currencyBlock.classList.add(order.currency);
             countBlock.textContent = order.amount;
             phoneBlock.textContent = order.phone;
 
