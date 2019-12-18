@@ -11,8 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const ordersTable = document.getElementById('orders');
     const modalOrder = document.getElementById('order_read');
     const modalOrderActive = document.getElementById('order_active');
+    const closeBtn = document.querySelector('.close');
 
     const orders = [];
+
+    //functions
 
     const renderOrders = () => {
 
@@ -33,17 +36,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openModal = (numberOrder) => {
         const order = orders[numberOrder];
-        const modal = !order.active ? modalOrderActive : modalOrder;
+        const modal = order.active ? modalOrderActive : modalOrder;
 
-        const firstName =document.querySelector('.firstname'),
+
+        const firstName = document.querySelector('.firstName'),
+            titleBlock = document.querySelector('.modal-title'),
+            emailBlock = document.querySelector('.email'),
+            descriptionBlock = document.querySelector('.description'),
+            deadlineBlock = document.querySelector('.deadline'),
+            currencyBlock = document.querySelector('.currency_img'),
+            countBlock = document.querySelector('.count'),
+            phoneBlock = document.querySelector('.phone');
+
+            titleBlock.textContent = order.title;
+            firstName.textContent = order.firstName;
+            emailBlock.textContent = order.email;
+            descriptionBlock.textContent = order.description;
+            deadlineBlock.textContent = order.deadline;
+            currencyBlock.textContent = order.currency;
+            countBlock.textContent = order.amount;
+            phoneBlock.textContent = order.phone;
 
         modal.style.display = 'block';
     };
+
+
+    //events
+
+    closeBtn.addEventListener('click', () => {
+        modalOrder.style.display = 'none';
+    });
 
     ordersTable.addEventListener('click', (event) => {
         const target = event.target;
 
         const targetOrder = target.closest('.order');
+
         if(targetOrder){
             openModal(targetOrder.dataset.numberOrder);
         }
